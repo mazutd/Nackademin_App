@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/grad">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginEnd="177dp"
+            android:layout_marginRight="177dp"
+            android:layout_marginBottom="63dp"
+            android:background="@drawable/ic_userm"
+            android:foregroundGravity="center" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="0dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/ubuntu_light_italic"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="19dp"
+            android:id="@+id/kontaktNamnInfo"
+            android:text="Success"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="16dp">
+
+
+
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+
+            android:paddingBottom="@dimen/row_padding"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"
+            android:paddingTop="@dimen/row_padding"
+            >
+
+            <ImageView
+                android:id="@+id/kontaktImage"
+                android:layout_width="@dimen/thumbnail"
+                android:layout_height="@dimen/thumbnail"
+                app:srcCompat="@drawable/ic_call"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp" />
+
+            <TextView
+                android:id="@+id/kontaktTelnummer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/kontaktImage"
+                android:text="0704464484"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/contact_name"
+                android:textSize="@dimen/contact_name" />
+
+            <TextView
+                android:id="@+id/kontakts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mobile"
+                android:layout_below="@id/kontaktTelnummer"
+                android:layout_toRightOf="@id/kontaktImage"
+                android:textColor="@color/contact_number"
+                android:textSize="@dimen/contact_number" />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+
+            android:paddingBottom="@dimen/row_padding"
+            android:paddingLeft="@dimen/activity_margin"
+            android:paddingRight="@dimen/activity_margin"
+            android:paddingTop="@dimen/row_padding"
+            >
+
+            <ImageView
+                android:id="@+id/kontaktImageEmail"
+                android:layout_width="@dimen/thumbnail"
+                android:layout_height="@dimen/thumbnail"
+                app:srcCompat="@drawable/ic_mail"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp" />
+
+            <TextView
+                android:id="@+id/kontaktEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/kontaktImageEmail"
+                android:text="0704464484"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/contact_name"
+                android:textSize="@dimen/contact_name" />
+
+            <TextView
+                android:id="@+id/kontaktsd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E-post"
+                android:layout_below="@id/kontaktEmail"
+                android:layout_toRightOf="@id/kontaktImageEmail"
+                android:textColor="@color/contact_number"
+                android:textSize="@dimen/contact_number" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp">
+            <Button
+                android:id="@+id/ButtonRing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@color/black"
+                android:layout_weight="1" android:text="Ring">
+            </Button>
+            <Button
+                android:id="@+id/ButtonMejla"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/gradStart"
+                android:text="Mejla">
+            </Button>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

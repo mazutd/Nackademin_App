@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:gravity="center"
+            android:background="@drawable/grad"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:text="hahahah"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:fontFamily="@font/ubuntu_light_italic"
+                android:id="@+id/kurceName"
+                android:textSize="25dp"
+                android:layout_height="70dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_margin="20dp"
+            android:layout_weight="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:hint="Name"
+                android:drawableLeft="@drawable/ic_tsart"
+                android:drawablePadding="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/borjar_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:hint="Email"
+                android:drawableLeft="@drawable/ic_slutar"
+                android:drawablePadding="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/slutar_dialog"
+                android:layout_width="match_parent"
+                android:paddingTop="30dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:hint="Password"
+                android:drawableLeft="@drawable/ic_betyg"
+                android:drawablePadding="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/betyg_dialog"
+                android:layout_width="match_parent"
+                android:paddingTop="30dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:hint="Brithday"
+                android:drawableLeft="@drawable/ic_poang"
+                android:paddingTop="30dp"
+                android:drawablePadding="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/poang_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="primary">#E43F3F</color>
+  <color name="primary_dark">#E12929</color>
+  <color name="primary_darker">#CC1D1D</color>
+  <color name="accent">#FFFFFF</color>
+
+  <color name="black">#000000</color>
+  <color name="jet">#222222</color>
+  <color name="oil">#333333</color>
+  <color name="monsoon">#777777</color>
+  <color name="jumbo">#888888</color>
+  <color name="aluminum">#999999</color>
+  <color name="base">#AAAAAA</color>
+  <color name="iron">#CCCCCC</color>
+  <color name="colorPrimary">#49BEFF</color>
+  <color name="colorPrimaryDark">#65DCE5</color>
+  <color name="colorAccent">#0D5D98</color>
+
+  <color name="address">#fff</color>
+  <color name="followers">#0D5D98</color>
+  <color name="headings">#9a3e3e</color>
+  <color name="solidCircle">#AAFFFFFF</color>
+  <color name="circleBorder">#50FFFFFF</color>
+  <color name="gradEnd">#632C2C</color>
+  <color name="gradStart">#ff7979</color>
+  <color name="followersBg">#9a3e3e</color>
+  <color name="followingBg">#ff5f5f</color>
+  <color name="grey">#E5E5E5</color>
+
+  <color name="white">#FFFFFF</color>
+
+  <color name="contact_name">#333333</color>
+  <color name="contact_number">#8c8c8c</color>
+</resources>

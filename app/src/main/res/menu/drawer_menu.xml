@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_message"
+            android:icon="@drawable/ic_login"
+            android:title="Min profil" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_kurser"
+            android:title="Mina Kurser" />+
+        <item
+            android:id="@+id/nav_betyg"
+            android:icon="@drawable/ic_betyg"
+            android:title="Mina Betyg" />
+        <item
+            android:id="@+id/nav_schema"
+            android:icon="@drawable/ic_schrma"
+            android:title="Schema" />
+        <item
+            android:id="@+id/nav_narvaro"
+            android:icon="@drawable/ic_time"
+            android:title="Närvaro" />
+        <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="Kontakter" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_logout"
+                android:title="Logga ut" />
+
+        </menu>
+    </item>
+</menu>

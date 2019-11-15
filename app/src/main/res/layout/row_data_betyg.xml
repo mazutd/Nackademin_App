@@ -1,0 +1,79 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ImageHolder_kurs"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/grad1"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/mKursnman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="21dp"
+                android:text="SomeText"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                android:textStyle="italic"
+                app:fontFamily="@font/ubuntu_light_italic" />
+
+            <TextView
+                android:id="@+id/mBorjar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="71dp"
+                android:paddingLeft="25px"
+                android:paddingRight="25px"
+                android:text="111111"
+                android:textColor="#E4B6BF"
+                android:textSize="10dp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/mBetyg"
+                android:layout_width="78dp"
+                android:layout_height="53dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="316dp"
+                android:layout_marginLeft="316dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center"
+                android:paddingLeft="25px"
+                android:paddingRight="25px"
+                android:text="VG"
+                android:textColor="@color/white"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
