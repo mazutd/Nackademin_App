@@ -2,6 +2,7 @@ package com.sourcey.materiallogindemo;
 
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -399,8 +400,12 @@ public class LoginActivity extends AppCompatActivity {
         String email1 = _emailText.getText().toString();
         String password1 = _passwordText.getText().toString();
         Intent intent = new Intent(getBaseContext(), MainActivity.class);
-        intent.putExtra("EXTRA_SESSION_USERNAME", email1);
-        intent.putExtra("EXTRA_SESSION_PASSWORD", password1);
+
+        SharedPreferences sp=getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences.Editor Ed=sp.edit();
+        Ed.putString("Unm",email1 );
+        Ed.putString("Psw",password1);
+        Ed.commit();
         startActivity(intent);
     }
 
@@ -423,7 +428,7 @@ public class LoginActivity extends AppCompatActivity {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+        if (password.isEmpty() || password.length() < 4 || password.length() > 50) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {

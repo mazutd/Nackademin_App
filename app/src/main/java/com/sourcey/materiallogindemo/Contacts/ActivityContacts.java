@@ -2,6 +2,7 @@ package com.sourcey.materiallogindemo.Contacts;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -53,6 +54,8 @@ public class ActivityContacts extends AppCompatActivity implements NavigationVie
     private DataAdapter_contacts contactAdapter;
     private RecyclerView.LayoutManager mLayoutMang;
     private EditText searchDiteText;
+    private SharedPreferences spl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +85,13 @@ public class ActivityContacts extends AppCompatActivity implements NavigationVie
         );
         getWebsite();
 
-        email = getIntent().getStringExtra("EXTRA_SESSION_USERNAME");
-        password = getIntent().getStringExtra("EXTRA_SESSION_PASSWORD");
-        fullPost= getIntent().getStringExtra("EXTRA_SESSION_EMAIL");
-        fullName = getIntent().getStringExtra("EXTRA_SESSION_FULLNAME");
-        klassName = getIntent().getStringExtra("EXTRA_SESSION_KLASSNAME");
+        spl = this.getSharedPreferences("Login", MODE_PRIVATE);
+
+        email    = spl.getString("Unm", null);
+        password = spl.getString("Psw", null);
+        fullPost = spl.getString("emailNack", null);
+        fullName = spl.getString("fullname", null);
+        klassName = spl.getString("klassName", null);
         _anvandarnamn.setText(fullName);
         _email.setText(fullPost);
         if (email == null){
@@ -150,52 +155,31 @@ public class ActivityContacts extends AppCompatActivity implements NavigationVie
         switch (item.getItemId()){
             case R.id.nav_message:
                 Intent intent_main = new Intent(this, MainActivity.class);
-                intent_main.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_main.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_main.putExtra("EXTRA_SESSION_EMAIL",fullPost);
-                intent_main.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_main.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
                 startActivity(intent_main);
                 break;
             case R.id.nav_chat:
                 Intent intent = new Intent(this, ActivityKurser.class);
-                intent.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent.putExtra("EXTRA_SESSION_EMAIL",fullPost);
-                intent.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
                 startActivity(intent);
                 break;
             case R.id.nav_betyg:
                 Intent intent_betyg = new Intent(this, ActivityBetyg.class);
-                intent_betyg.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_betyg.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_betyg.putExtra("EXTRA_SESSION_EMAIL",fullPost);
-                intent_betyg.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_betyg.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
-
                 startActivity(intent_betyg);
                 break;
             case R.id.nav_schema:
                 Intent intent_schema = new Intent(this, ActivitySchema.class);
-                intent_schema.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_schema.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_schema.putExtra("EXTRA_SESSION_EMAIL",fullPost);
-                intent_schema.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_schema.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
-
                 startActivity(intent_schema);
                 break;
             case R.id.nav_contacts:
                 break;
             case R.id.nav_narvaro:
                 Intent intent_narvaro = new Intent(this, ActivityNarvaro.class);
-                intent_narvaro.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_narvaro.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_narvaro.putExtra("EXTRA_SESSION_EMAIL",fullPost);
-                intent_narvaro.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_narvaro.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
                 startActivity(intent_narvaro);
+                break;
+            case R.id.nav_share:
+                SharedPreferences.Editor editor = spl.edit();
+                editor.clear().commit();
+                Intent intent_login = new Intent(this,LoginActivity.class);
+                startActivity(intent_login);
                 break;
 
 

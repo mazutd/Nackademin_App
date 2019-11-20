@@ -2,6 +2,7 @@ package com.sourcey.materiallogindemo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -34,12 +35,15 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static boolean VALIDATER = false;
-    private  TextView _anvandarnamn, _personnummer, _post1, _post2, _mobil,_adress,_anvandarnamn_menu,_email_menu,_klassNamn;
+    private  TextView _anvandarnamn, _personnummer, _post1, _post2, _mobil,_adress,_anvandarnamn_menu,_email_menu,_klassNamn,_mark;
     private DrawerLayout drawer;
-    private String email,password, fullname,email_nack,klassNamn;
+    private String email,password,klassNamn;
+    private String fullPost,fullName;
+
+    private SharedPreferences spl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this,
                 R.style.AppTheme_Dark_Dialog);
         super.onCreate(savedInstanceState);
@@ -71,12 +75,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         _mobil = (TextView) findViewById(R.id.tv_mobil);
         _adress = (TextView) findViewById(R.id.tv_adress);
         _klassNamn = (TextView) findViewById(R.id.klassNamn);
+        _mark = (TextView) findViewById(R.id.mark);
+        spl=this.getSharedPreferences("Login", MODE_PRIVATE);
 
-        email = getIntent().getStringExtra("EXTRA_SESSION_USERNAME");
-        password = getIntent().getStringExtra("EXTRA_SESSION_PASSWORD");
-        email_nack= getIntent().getStringExtra("EXTRA_SESSION_EMAIL");
-        fullname = getIntent().getStringExtra("EXTRA_SESSION_FULLNAME");
-        klassNamn = getIntent().getStringExtra("EXTRA_SESSION_KLASSNAME");
+        email    = spl.getString("Unm", null);
+        password = spl.getString("Psw", null);
+        fullPost = spl.getString("emailNack", null);
+        fullName = spl.getString("fullname", null);
+        klassNamn = spl.getString("klassName", null);
+
+
         if (email == null){
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -107,49 +115,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_chat:
                 Intent intent = new Intent(this, ActivityKurser.class);
-                intent.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent.putExtra("EXTRA_SESSION_EMAIL",email_nack);
-                intent.putExtra("EXTRA_SESSION_FULLNAME",fullname);
-                intent.putExtra("EXTRA_SESSION_KLASSNAME",klassNamn);
                 startActivity(intent);
                 break;
             case R.id.nav_betyg:
                     Intent intent_betyg = new Intent(this, ActivityBetyg.class);
-                    intent_betyg.putExtra("EXTRA_SESSION_USERNAME", email);
-                    intent_betyg.putExtra("EXTRA_SESSION_PASSWORD", password);
-                    intent_betyg.putExtra("EXTRA_SESSION_EMAIL",email_nack);
-                    intent_betyg.putExtra("EXTRA_SESSION_FULLNAME",fullname);
-                    intent_betyg.putExtra("EXTRA_SESSION_KLASSNAME",klassNamn);
                 startActivity(intent_betyg);
                     break;
             case R.id.nav_schema:
                 Intent intent_schema = new Intent(this, ActivitySchema.class);
-                intent_schema.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_schema.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_schema.putExtra("EXTRA_SESSION_EMAIL",email_nack);
-                intent_schema.putExtra("EXTRA_SESSION_FULLNAME",fullname);
-                intent_schema.putExtra("EXTRA_SESSION_KLASSNAME",klassNamn);
-
                 startActivity(intent_schema);
                 break;
             case R.id.nav_contacts:
                 Intent intent_contacts = new Intent(this, ActivityContacts.class);
-                intent_contacts.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_contacts.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_contacts.putExtra("EXTRA_SESSION_EMAIL",email_nack);
-                intent_contacts.putExtra("EXTRA_SESSION_FULLNAME",fullname);
-                intent_contacts.putExtra("EXTRA_SESSION_KLASSNAME",klassNamn);
-
                 startActivity(intent_contacts);
                 break;
             case R.id.nav_narvaro:
                 Intent intent_narvaro = new Intent(this, ActivityNarvaro.class);
-                intent_narvaro.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_narvaro.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_narvaro.putExtra("EXTRA_SESSION_EMAIL",email_nack);
-                intent_narvaro.putExtra("EXTRA_SESSION_FULLNAME",fullname);
-                intent_narvaro.putExtra("EXTRA_SESSION_KLASSNAME",klassNamn);
                 startActivity(intent_narvaro);
                 break;
         }
@@ -180,11 +161,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String post2 = null;
                 String mobil = null;
                 String adress = null;
-                String img = null;
+                String KlassNamn = null;
 
 
-                String email = getIntent().getStringExtra("EXTRA_SESSION_USERNAME");
-                String password = getIntent().getStringExtra("EXTRA_SESSION_PASSWORD");
                 try {
                     Connection.Response loginForm = Jsoup
                             .connect("https://nackademin.learnpoint.se/LoginForms/LoginForm.aspx?ReturnUrl=%2fLoginForms%2f")
@@ -241,9 +220,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             .method(Connection.Method.GET)
                             .execute();
                     Document doc4 = KlassIno.parse();
-                    String KlassNamn = doc4.select("div[class=\"group-information__attribute\"]").first().select("div[class=\"group-information__attribute-value\"]").text();
-                    Log.d("klassArray", KlassNamn);
-                    klassNamn = KlassNamn;
+                    KlassNamn = doc4.select("div[class=\"group-information__attribute\"]").first().select("div[class=\"group-information__attribute-value\"]").text();
 
                     anvandarFullNamn = doc3.select("span[id=\"ctl00_MainContentPlaceHolder_ctlStudentInformation_lblName\"]").text();
                     anvandarNamn = doc3.select("a[id=\"ctl00_MainContentPlaceHolder_ctlStudentInformation_lblUsername\"]").text();
@@ -252,8 +229,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     post2        = doc3.select("a[id=\"ctl00_MainContentPlaceHolder_ctlStudentInformation_lblEmailPrivate\"]").text();
                     mobil        = doc3.select("a[id=\"ctl00_MainContentPlaceHolder_ctlStudentInformation_lblMobilePhone\"]").text();
                     adress       = doc3.select("span[id=\"ctl00_MainContentPlaceHolder_ctlStudentInformation_lblLegalAddress\"]").text();
-                    email_nack = post1;
-                    fullname = anvandarFullNamn;
+
+                    SharedPreferences.Editor Ed=spl.edit();
+                    Ed.putString("emailNack",post1 );
+                    Ed.putString("fullname",anvandarFullNamn );
+                    Ed.putString("klassName",KlassNamn);
+                    Ed.commit();
                     VALIDATER = true;
 
                 } catch (IOException e) {
@@ -267,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 final String finalPost2 = post2;
                 final String finalMobil = mobil;
                 final String finaladress = adress;
+                final String finalKlassName = KlassNamn;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -278,7 +260,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         _adress.setText(finaladress);
                         _anvandarnamn_menu.setText(finalAnvandarNamnFull);
                         _email_menu.setText(finalPost1);
-                        _klassNamn.setText(klassNamn);
+                        _klassNamn.setText(finalKlassName);
+                        String[] myName = finalAnvandarNamnFull.split(" ");
+                        String initials = "";
+                        for (int i = 0; i <= 1; i++) {
+                            String s = myName[i];
+                            initials+=s.charAt(0);
+                        }
+                        _mark.setText(initials);
 
 
 

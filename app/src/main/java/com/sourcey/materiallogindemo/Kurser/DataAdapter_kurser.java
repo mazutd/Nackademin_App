@@ -1,12 +1,14 @@
 package com.sourcey.materiallogindemo.Kurser;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sourcey.materiallogindemo.R;
 
@@ -55,7 +57,15 @@ public class DataAdapter_kurser extends RecyclerView.Adapter<DataAdapter_kurser.
         holder.tv_blog_title.setText(mBlogTitleList.get(position));
         holder.tv_blog_author.setText(mAuthorNameList.get(position));
         holder.tv_blog_upload_date.setText(mBlogUploadDateList.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (view.getContext(), KursIdActivity.class);
+                mActivity.startActivity(intent);
+                Toast.makeText(mActivity, mBlogTitleList.get(position), Toast.LENGTH_LONG).show();
 
+            }
+        });
 
     }
 

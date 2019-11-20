@@ -2,6 +2,7 @@ package com.sourcey.materiallogindemo.Kurser;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -46,6 +47,8 @@ public class ActivityKurser extends AppCompatActivity implements NavigationView.
     private ArrayList<String> mBlogUploadDateList = new ArrayList<>();
     private ArrayList<String> mBlogTitleList = new ArrayList<>();
     private ArrayList<String> mBlogTitleListImage = new ArrayList<>();
+    private SharedPreferences spl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -67,8 +70,8 @@ public class ActivityKurser extends AppCompatActivity implements NavigationView.
         password = getIntent().getStringExtra("EXTRA_SESSION_PASSWORD");
 
         result = (TextView) findViewById(R.id.result);
-        _anvandarnamn = (TextView) headerView.findViewById(R.id.username_menu);
         _email = (TextView) headerView.findViewById(R.id.username_email);
+        _anvandarnamn = (TextView) headerView.findViewById(R.id.username_menu);
 
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
@@ -77,12 +80,15 @@ public class ActivityKurser extends AppCompatActivity implements NavigationView.
         getWebsite();
 
 
+        spl=this.getSharedPreferences("Login", MODE_PRIVATE);
+        email    = spl.getString("Unm", null);
+        password = spl.getString("Psw", null);
+        fullpost = spl.getString("emailNack", null);
+        fullName = spl.getString("fullname", null);
+        klassName = spl.getString("klassName", null);
 
-        email = getIntent().getStringExtra("EXTRA_SESSION_USERNAME");
-        password = getIntent().getStringExtra("EXTRA_SESSION_PASSWORD");
-        fullpost= getIntent().getStringExtra("EXTRA_SESSION_EMAIL");
-        fullName = getIntent().getStringExtra("EXTRA_SESSION_FULLNAME");
-        klassName = getIntent().getStringExtra("EXTRA_SESSION_KLASSNAME");
+
+
 
         _anvandarnamn.setText(fullName);
         _email.setText(fullpost);
@@ -114,56 +120,35 @@ public class ActivityKurser extends AppCompatActivity implements NavigationView.
         switch (item.getItemId()){
             case R.id.nav_message:
                 Intent intent_main = new Intent(this, MainActivity.class);
-                intent_main.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_main.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_main.putExtra("EXTRA_SESSION_EMAIL",fullName);
-                intent_main.putExtra("EXTRA_SESSION_FULLNAME",fullpost);
-                intent_main.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
-
                 startActivity(intent_main);
                 break;
             case R.id.nav_chat:
                 break;
             case R.id.nav_betyg:
                 Intent intent_betyg = new Intent(this, ActivityBetyg.class);
-                intent_betyg.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_betyg.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_betyg.putExtra("EXTRA_SESSION_EMAIL",fullName);
-                intent_betyg.putExtra("EXTRA_SESSION_FULLNAME",fullpost);
-                intent_betyg.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
-
                 startActivity(intent_betyg);
                 break;
             case R.id.nav_schema:
                 Intent intent_schema = new Intent(this, ActivitySchema.class);
-                intent_schema.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_schema.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_schema.putExtra("EXTRA_SESSION_EMAIL",fullName);
-                intent_schema.putExtra("EXTRA_SESSION_FULLNAME",fullpost);
-                intent_schema.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
 
                 startActivity(intent_schema);
                 break;
             case R.id.nav_contacts:
                 Intent intent_contacts = new Intent(this, ActivityContacts.class);
-                intent_contacts.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_contacts.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_contacts.putExtra("EXTRA_SESSION_EMAIL",fullpost);
-                intent_contacts.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_contacts.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
 
                 startActivity(intent_contacts);
                 break;
             case R.id.nav_narvaro:
                 Intent intent_narvaro = new Intent(this, ActivityNarvaro.class);
-                intent_narvaro.putExtra("EXTRA_SESSION_USERNAME", email);
-                intent_narvaro.putExtra("EXTRA_SESSION_PASSWORD", password);
-                intent_narvaro.putExtra("EXTRA_SESSION_EMAIL",fullpost);
-                intent_narvaro.putExtra("EXTRA_SESSION_FULLNAME",fullName);
-                intent_narvaro.putExtra("EXTRA_SESSION_KLASSNAME",klassName);
                 startActivity(intent_narvaro);
                 break;
+            case R.id.nav_share:
+                SharedPreferences.Editor editor = spl.edit();
+                editor.clear().commit();
+                Intent intent_login = new Intent(this,LoginActivity.class);
+                startActivity(intent_login);
 
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

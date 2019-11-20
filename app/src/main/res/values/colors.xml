@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="primary">#E43F3F</color>
-  <color name="primary_dark">#E12929</color>
-  <color name="primary_darker">#CC1D1D</color>
+  <color name="primary">#1B2A3B</color>
+  <color name="primary_dark">#1B2A3B</color>
+  <color name="primary_darker">#1B2A3B</color>
   <color name="accent">#FFFFFF</color>
 
   <color name="black">#000000</color>
@@ -16,17 +16,20 @@
   <color name="colorPrimary">#49BEFF</color>
   <color name="colorPrimaryDark">#65DCE5</color>
   <color name="colorAccent">#0D5D98</color>
+  <color name="fbColor">#3B5998</color>
 
   <color name="address">#fff</color>
   <color name="followers">#0D5D98</color>
   <color name="headings">#9a3e3e</color>
   <color name="solidCircle">#AAFFFFFF</color>
   <color name="circleBorder">#50FFFFFF</color>
-  <color name="gradEnd">#632C2C</color>
+  <color name="gradEnd">#1B2A3B</color>
   <color name="gradStart">#ff7979</color>
-  <color name="followersBg">#9a3e3e</color>
-  <color name="followingBg">#ff5f5f</color>
+  <color name="followersBg">#1B2A3B</color>
+  <color name="followingBg">#1B2A3B</color>
   <color name="grey">#E5E5E5</color>
+  <color name="gradDark">#1B2A3B</color>
+  <color name="gradLight">#1b2a3bbf</color>
 
   <color name="white">#FFFFFF</color>
 
